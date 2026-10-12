@@ -1,0 +1,267 @@
+@charset "UTF-8";
+
+/* ==========================================================================
+   LUSTER FACE CLINIC — LUXURY AESTHETICS DESIGN SYSTEM
+   Inspired by OFINO Luxury Skin Reference
+   ========================================================================== */
+
+:root {
+  --color-bg: #FFFFFF;
+  --color-bg-warm: #F8F6F2;
+  --color-bg-card: #F8F6F2;
+  --color-bg-card-alt: #F3EFE9;
+  --color-text-main: #111111;
+  --color-text-muted: #66625E;
+  --color-text-subtle: #8A857F;
+  --color-accent-champagne: #B9A786;
+  --color-accent-champagne-dark: #A18E6D;
+  --color-accent-champagne-light: #F4EFE6;
+  --color-border: #EAE7E1;
+  --color-border-subtle: #F0ECE5;
+  --color-footer-bg: #050505;
+  --color-footer-text: #F6F3EE;
+  --color-status-green: #15803D;
+  --color-status-green-bg: #DCFCE7;
+
+  --font-heading: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Plus Jakarta Sans', 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-full: 9999px;
+
+  --shadow-subtle: 0 4px 20px rgba(0, 0, 0, 0.03);
+  --shadow-hover: 0 12px 36px rgba(0, 0, 0, 0.08);
+
+  --transition-smooth: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-body);
+  background-color: var(--color-bg);
+  color: var(--color-text-main);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background-color: var(--color-bg);
+  color: var(--color-text-main);
+  line-height: 1.6;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+button, input, select, textarea {
+  font-family: inherit;
+}
+
+/* ==========================================================================
+   LAYOUT UTILITIES
+   ========================================================================== */
+
+.container {
+  width: 100%;
+  max-width: 1360px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: clamp(1.25rem, 4vw, 3.5rem);
+  padding-right: clamp(1.25rem, 4vw, 3.5rem);
+}
+
+.section-label {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-text-main);
+  margin-bottom: 0.85rem;
+}
+
+.section-title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.85rem, 3.2vw, 2.75rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  line-height: 1.15;
+  color: var(--color-text-main);
+}
+
+.section-desc {
+  font-size: clamp(0.92rem, 1.1vw, 1.05rem);
+  line-height: 1.7;
+  color: var(--color-text-muted);
+  max-width: 580px;
+}
+
+/* Section Spacing */
+.section-spacing {
+  padding-top: clamp(4rem, 8vw, 7.5rem);
+  padding-bottom: clamp(4rem, 8vw, 7.5rem);
+}
+
+/* ==========================================================================
+   BUTTONS & BADGES
+   ========================================================================== */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.75rem 1.65rem;
+  border-radius: var(--radius-full);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  text-decoration: none;
+  border: 1px solid transparent;
+}
+
+.btn-champagne {
+  background-color: var(--color-accent-champagne);
+  color: #FFFFFF;
+}
+
+.btn-champagne:hover {
+  background-color: var(--color-accent-champagne-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(185, 167, 134, 0.35);
+}
+
+.btn-dark {
+  background-color: var(--color-text-main);
+  color: #FFFFFF;
+}
+
+.btn-dark:hover {
+  background-color: #262626;
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--color-text-main);
+  border-color: var(--color-text-main);
+}
+
+.btn-outline:hover {
+  background-color: var(--color-text-main);
+  color: #FFFFFF;
+}
+
+.circle-badge {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--color-accent-champagne);
+  color: #FFFFFF;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(185, 167, 134, 0.4);
+  transition: var(--transition-smooth);
+}
+
+.circle-nav-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border);
+  background-color: #FFFFFF;
+  color: var(--color-text-main);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.circle-nav-btn:hover {
+  border-color: var(--color-text-main);
+  background-color: var(--color-text-main);
+  color: #FFFFFF;
+}
+
+/* ==========================================================================
+   HORIZONTAL CAROUSEL CONTROLS & TRACK
+   ========================================================================== */
+
+.carousel-track {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 1rem;
+}
+
+.carousel-track::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel-item {
+  flex: 0 0 calc(33.333% - 1rem);
+  scroll-snap-align: start;
+}
+
+@media (max-width: 1024px) {
+  .carousel-item {
+    flex: 0 0 calc(50% - 0.75rem);
+  }
+}
+
+@media (max-width: 640px) {
+  .carousel-item {
+    flex: 0 0 calc(85% - 0.5rem);
+  }
+}
+
+/* ==========================================================================
+   SUBTLE ANIMATIONS
+   ========================================================================== */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
