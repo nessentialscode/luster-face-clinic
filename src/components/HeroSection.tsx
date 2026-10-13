@@ -226,6 +226,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenBooking }) => {
             justify-content: flex-end !important;
             padding: 0 !important;
             position: relative !important;
+            overflow: hidden !important;
+            max-width: 100% !important;
+            width: 100% !important;
           }
 
           .hero-desktop-image-container,
@@ -263,6 +266,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenBooking }) => {
           .hero-content-container {
             padding: 1.5rem 1.25rem 2.75rem 1.25rem !important;
             z-index: 10 !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            box-sizing: border-box !important;
           }
 
           .hero-mobile-content {
@@ -270,12 +276,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenBooking }) => {
             flex-direction: column !important;
             align-items: flex-start !important;
             max-width: 100% !important;
+            width: 100% !important;
           }
 
           /* Exact 5-line typography matching Reference Image 2 */
           .hero-mobile-heading {
             font-family: var(--font-heading) !important;
-            font-size: clamp(2.35rem, 8.8vw, 3.2rem) !important;
+            font-size: clamp(2rem, 7.8vw, 3.2rem) !important;
             font-weight: 900 !important;
             line-height: 0.96 !important;
             letter-spacing: -0.035em !important;
@@ -284,6 +291,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenBooking }) => {
             margin: 0 0 1.15rem 0 !important;
             display: flex !important;
             flex-direction: column !important;
+            max-width: 100% !important;
+            word-break: break-word !important;
           }
 
           .hero-mobile-clinic-word {

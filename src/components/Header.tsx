@@ -51,12 +51,14 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
             textDecoration: 'none',
             display: 'flex',
             alignItems: 'center',
+            flexShrink: 0,
           }}
           aria-label="Luster Face Clinic Home"
         >
           <img
             src="/assets/luster-logo.png"
             alt="Luster Face Clinic"
+            className="header-logo-img"
             style={{
               height: '42px',
               width: 'auto',
@@ -195,16 +197,36 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
         }
         @media (max-width: 859px) {
           .mobile-menu-toggle {
-            display: block !important;
+            display: inline-flex !important;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+          }
+          .header-logo-img {
+            height: 36px !important;
+            max-width: 120px !important;
           }
           .header-book-btn {
             background-color: #A38765 !important;
-            padding: 0.44rem 0.95rem !important;
+            padding: 0.42rem 0.82rem !important;
             font-size: 0.70rem !important;
             gap: 5px !important;
+            white-space: nowrap !important;
+            flex-shrink: 0 !important;
           }
           .header-calendar-icon {
             display: inline-block !important;
+          }
+        }
+        @media (max-width: 360px) {
+          .header-logo-img {
+            height: 32px !important;
+            max-width: 100px !important;
+          }
+          .header-book-btn {
+            padding: 0.38rem 0.65rem !important;
+            font-size: 0.66rem !important;
+            gap: 4px !important;
           }
         }
       `}</style>

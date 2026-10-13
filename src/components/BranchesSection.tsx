@@ -1,11 +1,23 @@
-import React from 'react';
-import { MapPin, Phone, Clock, Navigation, Calendar } from 'lucide-react';
+import React, { useRef } from 'react';
+import { MapPin, Phone, Clock, Navigation, Calendar, ArrowLeft, ArrowRight } from 'lucide-react';
 
 interface BranchesSectionProps {
   onBookBranch: (branchName: string) => void;
 }
 
 export const BranchesSection: React.FC<BranchesSectionProps> = ({ onBookBranch }) => {
+  const branchesRef = useRef<HTMLDivElement>(null);
+
+  const scrollBranches = (direction: 'left' | 'right') => {
+    if (branchesRef.current) {
+      const scrollAmount = branchesRef.current.clientWidth * 0.88;
+      branchesRef.current.scrollBy({
+        left: direction === 'left' ? -scrollAmount : scrollAmount,
+        behavior: 'smooth',
+      });
+    }
+  };
+
   const branches = [
     {
       id: 'valayamkulam',
@@ -44,40 +56,69 @@ export const BranchesSection: React.FC<BranchesSectionProps> = ({ onBookBranch }
     >
       <div className="container">
         {/* Section Header */}
-        <div style={{ marginBottom: '3rem', maxWidth: '640px' }}>
-          <span className="section-label">OUR CLINIC CENTRES</span>
-          <h2
+        <div style={{ marginBottom: '2.5rem' }}>
+          <div
             style={{
-              fontFamily: 'var(--font-heading)',
-              fontSize: 'clamp(1.85rem, 3.2vw, 2.75rem)',
-              fontWeight: 800,
-              letterSpacing: '-0.02em',
-              textTransform: 'uppercase',
-              color: 'var(--color-text-main)',
-              lineHeight: 1.15,
+              display: 'flex',
+              alignItems: 'flex-end',
+              justifyContent: 'space-between',
+              gap: '1rem',
             }}
           >
-            LOCATIONS DESIGNED FOR YOUR COMFORT
-          </h2>
+            <div style={{ maxWidth: '640px' }}>
+              <span className="section-label">OUR CLINIC CENTRES</span>
+              <h2
+                style={{
+                  fontFamily: 'var(--font-heading)',
+                  fontSize: 'clamp(1.85rem, 3.2vw, 2.75rem)',
+                  fontWeight: 800,
+                  letterSpacing: '-0.02em',
+                  textTransform: 'uppercase',
+                  color: 'var(--color-text-main)',
+                  lineHeight: 1.15,
+                }}
+              >
+                LOCATIONS DESIGNED FOR YOUR COMFORT
+              </h2>
+            </div>
+
+            {/* Navigation Arrows for Mobile Horizontal Scroll */}
+            <div className="branches-mobile-arrows" style={{ gap: '0.5rem', flexShrink: 0 }}>
+              <button
+                onClick={() => scrollBranches('left')}
+                className="circle-nav-btn"
+                aria-label="Previous Branch"
+                style={{ backgroundColor: '#EFF3E8', width: '38px', height: '38px' }}
+              >
+                <ArrowLeft size={16} />
+              </button>
+              <button
+                onClick={() => scrollBranches('right')}
+                className="circle-nav-btn"
+                aria-label="Next Branch"
+                style={{ backgroundColor: '#EFF3E8', width: '38px', height: '38px' }}
+              >
+                <ArrowRight size={16} />
+              </button>
+            </div>
+          </div>
+
           <p
             style={{
               fontSize: '0.95rem',
               color: 'var(--color-text-muted)',
               marginTop: '0.75rem',
               lineHeight: 1.6,
+              maxWidth: '640px',
             }}
           >
             Experience tranquil, state-of-the-art clinical environments equipped with the latest aesthetic technology across Malappuram & Thrissur borders.
           </p>
         </div>
 
-        {/* Two Branch Cards Grid — Exact 2 Cards in First View (No Scrolling) */}
+        {/* Branch Cards Grid (Desktop 2-Cards Grid, Mobile Horizontal Scroll Track) */}
         <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-            gap: 'clamp(1.5rem, 3vw, 2.5rem)',
-          }}
+          ref={branchesRef}
           className="branches-grid"
         >
           {branches.map((branch) => (
@@ -279,11 +320,52 @@ export const BranchesSection: React.FC<BranchesSectionProps> = ({ onBookBranch }
       </div>
 
       <style>{`
-        @media (min-width: 900px) {
+        .branches-grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: clamp(1.5rem, 3vw, 2.5rem);
+        }
+        .branches-mobile-arrows {
+          display: none;
+        }
+
+        @media (max-width: 899px) {
+          .branches-mobile-arrows {
+            display: flex !important;
+          }
           .branches-grid {
-            grid-template-columns: repeat(2, 1fr) !important;
+            display: flex !important;
+            overflow-x: auto !important;
+            scroll-snap-type: x mandatory !important;
+            gap: 1.25rem !important;
+            padding-bottom: 1.25rem !important;
+            padding-right: 1.5rem !important;
+            scrollbar-width: none !important;
+            -webkit-overflow-scrolling: touch !important;
+          }
+          .branches-grid::-webkit-scrollbar {
+            display: none !important;
+          }
+          .branch-card {
+            flex: 0 0 86% !important;
+            min-width: 290px !important;
+            max-width: 86vw !important;
+            scroll-snap-align: start !important;
           }
         }
+
+        @media (min-width: 900px) {
+          .branches-mobile-arrows {
+            display: none !important;
+          }
+          .branches-grid {
+            display: grid !important;
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: clamp(1.5rem, 3vw, 2.5rem) !important;
+            overflow-x: visible !important;
+          }
+        }
+
         .branch-card:hover {
           transform: translateY(-4px);
           box-shadow: 0 16px 36px rgba(0, 0, 0, 0.08) !important;
